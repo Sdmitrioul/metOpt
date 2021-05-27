@@ -1,4 +1,4 @@
-package skroba.lab1.methods.exceptions;
+package skroba.exceptions;
 
 import java.io.IOException;
 

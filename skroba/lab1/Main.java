@@ -1,7 +1,7 @@
 package skroba.lab1;
 
 import skroba.lab1.methods.*;
-import skroba.lab1.methods.exceptions.TimeOutException;
+import skroba.exceptions.TimeOutException;
 import skroba.lab1.utils.BufferedAnswerWriter;
 import skroba.lab1.utils.data.Answer;
 

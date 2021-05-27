@@ -1,6 +1,6 @@
 package skroba.lab1.methods;
 
-import skroba.lab1.methods.exceptions.TimeOutException;
+import skroba.exceptions.TimeOutException;
 import skroba.lab1.utils.data.Answer;
 import skroba.lab1.utils.data.Data;
 import skroba.lab1.utils.data.Pair;

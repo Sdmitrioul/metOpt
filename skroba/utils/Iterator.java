@@ -1,4 +1,4 @@
-package skroba.lab2.methods;
+package skroba.utils;
 
 public interface Iterator<T> {
 	boolean hasNext();
