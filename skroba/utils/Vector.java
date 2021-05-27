@@ -40,6 +40,25 @@ public class Vector {
 	}
 	
 	/**
+	 * Multiply this vector with given. Coordinate system is orthogonal.
+	 * @param aVector - given vector
+	 * @return - result of multiplying.
+	 */
+	public double mul(Vector aVector) {
+		if (size() != aVector.size()) {
+			throw new IllegalArgumentException("Vector's must have equals spans");
+		}
+		
+		double ans = 0.0;
+		
+		for (int i = 0; i < size(); i++) {
+			ans += vector.get(i) * aVector.get(i);
+		}
+		
+		return ans;
+	}
+	
+	/**
 	 * Sum of this vector and given. This vector and given must have equals lengths.
 	 *
 	 * @param anotherVector - Vector that is summing to this.

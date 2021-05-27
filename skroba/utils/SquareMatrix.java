@@ -1,5 +1,6 @@
 package skroba.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +32,26 @@ public class SquareMatrix {
 			throw new IllegalArgumentException("Matrix must be square!");
 		}
 		this.matrix = Arrays.stream(matrix).collect(Collectors.toList());
+	}
+	
+	/**
+	 * Multiplying matrix with vector. Coordinate system is orthogonal.
+	 * @param vector multiplying vector.
+	 * @return vector, result of multiplying.
+	 */
+	public Vector mul(Vector vector) {
+		if (vector.size() != matrix.size()) {
+			throw new IllegalArgumentException("Matrix and vector must have equals spans");
+		}
+		
+		final int span = vector.size();
+		List<Double> ans = new ArrayList<>(span);
+		
+		for (int i = 0; i < vector.size(); i++) {
+			ans.add(matrix.get(i).mul(vector));
+		}
+		
+		return new Vector(ans);
 	}
 	
 	/**
