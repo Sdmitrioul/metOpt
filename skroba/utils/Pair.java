@@ -1,5 +1,10 @@
 package skroba.utils;
 
+/**
+ * Simple class, containing pair of elements.
+ * @param <F> - first element.
+ * @param <S> - second element.
+ */
 public class Pair<F, S> {
 	final F first;
 	final S second;
