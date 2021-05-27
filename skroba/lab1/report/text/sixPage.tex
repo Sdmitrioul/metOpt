@@ -1,0 +1,145 @@
+\begin{center}
+	\begin{Large}
+		\textbf{6. Программный код}
+	\end{Large}
+\end{center}
+
+Реализация всех методов и всех вспомогательных классов вывовящих резальтаты представленна в репозитории (\href{https://github.com/Sdmitrioul/metOpt}{sdmitrioul}). Здесь представлен только интерфейс метода, абстрактный класс метода и для примера метод золотого сечения.\\
+\noindent\rule{\textwidth}{1pt}\\
+\textbf{Интерфейс:}\\
+\begin{verbatim}
+public interface MinimumSearcher {
+    //PRE:  leftBorder < rightBorder
+    Answer findMin(double leftBorder, double rightBorder) throws TimeOutException;
+    int getOperationCounter();
+    //PRE:  findMin must throw exception
+    Answer answerWithException();
+}
+\end{verbatim}\\
+\noindent\rule{\textwidth}{1pt}\\
+\textbf{Абстрактный класс:}\\
+\begin{verbatim}
+public abstract class AbstractMethod implements MinimumSearcher {
+    private final int MAX_OPERATION_NUMBER = 1000000;
+    private boolean exception = false;
+    private final String methodName;
+    protected final double EPS;
+    protected final double DELTA;
+    protected final String nameOfParameters;
+    protected final Function<Double, Double> function;
+    protected int operationCounter = 1;
+    protected LinkedHashMap<Integer, Data> data = new LinkedHashMap<>();
+
+
+    public AbstractMethod(String methodName, double EPS, double DELTA, 
+                          String nameOfParameters, Function<Double, Double> function) {
+        this.methodName = methodName;
+        this.EPS = EPS;
+        this.DELTA = DELTA;
+        this.nameOfParameters = nameOfParameters;
+        this.function = function;
+    }
+
+    @Override
+    public abstract Answer findMin(double leftBorder, double rightBorder) 
+    														throws TimeOutException;
+
+    @Override
+    public int getOperationCounter() {
+        return operationCounter;
+    }
+
+    protected Answer wrapper(final double min) {
+        return new Answer(min, data, 
+                nameOfParameters, this.methodName);
+    }
+
+    protected void addData(final int operation, Data data) {
+        this.data.put(operation, data);
+    }
+
+    protected List<Pair<Double, Double>> pointsWrapper(final double ... points) {
+        ArrayList<Pair<Double, Double>> list = new ArrayList<>();
+        for (double point : points) {
+            list.add(new Pair<>(point, function.apply(point)));
+        }
+        return list;
+    }
+
+    protected void checkCondition() throws TimeOutException {
+        if (operationCounter > MAX_OPERATION_NUMBER) {
+            exception = true;
+            throw new TimeOutException(methodName + " can't find operation in needed 
+            																												time");
+        }
+    }
+
+    public Answer answerWithException() {
+        if (exception) {
+            return wrapper(Double.NaN);
+        }
+        return null;
+    }
+
+    protected Data wrapData(final double leftBorder, final double rightBorder, 
+    															final double ... points) {
+        return new Data(leftBorder, rightBorder, rightBorder - leftBorder, 
+        									pointsWrapper(points));
+    }
+
+    protected void clear() {
+        operationCounter = 1;
+        exception = false;
+        data = new LinkedHashMap<>();
+    }
+}
+
+\end{verbatim}\\
+\noindent\rule{\textwidth}{1pt}\\
+\textbf{Метод золотого сечения:}\\
+\begin{verbatim}
+public class GoldenRatioMethod extends AbstractMethod {
+    private final BinaryOperator<Double> leftFunction = (left, right) 
+            -> left + (3 - Math.sqrt(5)) * (right - left) / 2;
+    private final BinaryOperator<Double> rightFunction = (left, right) 
+            -> left + (Math.sqrt(5) - 1) * (right - left) / 2;
+
+    public GoldenRatioMethod(final double EPS, final double DELTA, 
+                             final Function<Double, Double> function) {
+        super("Golden_Ratio_Method",EPS, DELTA,
+                "(left-border) (right-border) " +
+                        "(left) (left-fun) (right) (right-fun)", function);
+    }
+
+    @Override
+    public Answer findMin(double leftBorder, double rightBorder) 
+            throws TimeOutException {
+        clear();
+        double left = leftFunction.apply(leftBorder, rightBorder);
+        double right = rightFunction.apply(leftBorder, rightBorder);
+
+        addData(operationCounter, wrapData(leftBorder, rightBorder, left, right));
+
+        while ((rightBorder - leftBorder) / 2 > EPS) {
+            if (function.apply(left) <= function.apply(right)) {
+                rightBorder = right;
+                right = left;
+                left = leftFunction.apply(leftBorder, rightBorder);
+            } else {
+                leftBorder = left;
+                left = right;
+                right = rightFunction.apply(leftBorder, rightBorder);
+            }
+
+            addData(++operationCounter, 
+                    wrapData(leftBorder, rightBorder, left, right));
+            checkCondition();
+        }
+
+        double min = (leftBorder + rightBorder) / 2;
+
+        return wrapper(min);
+    }
+}
+\end{verbatim}\\
+\noindent\rule{\textwidth}{1pt}\\

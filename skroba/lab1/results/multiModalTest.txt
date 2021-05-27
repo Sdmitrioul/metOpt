@@ -1,0 +1,5 @@
+Dichotomy_Method & 3,91213 \\\hline
+Golden_Ratio_Method & 3,91220 \\\hline
+Fibonacci_Method & 3,91218 \\\hline
+Parabola_Method & 3,91218 \\\hline
+Brant_Combine_Method & 8,28907 \\\hline
