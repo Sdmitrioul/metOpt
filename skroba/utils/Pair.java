@@ -14,10 +14,18 @@ public class Pair<F, S> {
 		this.second = second;
 	}
 	
+	/**
+	 * Returns first value.
+	 * @return {@link F} first parameter of pair.
+	 */
 	public F getFirst() {
 		return first;
 	}
 	
+	/**
+	 * Returns second value.
+	 * @return {@link S} second parameter of pair.
+	 */
 	public S getSecond() {
 		return second;
 	}
