@@ -1,0 +1,100 @@
+package skroba.utils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Simple realization of vector with some methods, based on List.
+ */
+public class Vector {
+	private final List<Double> vector;
+	
+	/**
+	 * Constructor of a new Vector of given List of Double elements.
+	 * @param vector - List of Double elements, not null.
+	 */
+	public Vector(final List<Double> vector) {
+		this.vector = vector;
+	}
+	
+	/**
+	 * Constructor of new empty vector.
+	 */
+	public Vector() {
+		this(Collections.EMPTY_LIST);
+	}
+	
+	/**
+	 * Returns new Vector, product of scalar multiply with this vector.
+	 *
+	 * @param scalar - scalar value for multiplying
+	 * @return - new Vector.
+	 */
+	public Vector scalarMul(double scalar) {
+		return new Vector(vector.stream()
+				.map(x -> x * scalar)
+				.collect(Collectors.toList())
+		);
+	}
+	
+	/**
+	 * Sum of this vector and given. This vector and given must have equals lengths.
+	 *
+	 * @param anotherVector - Vector that is summing to this.
+	 * @return - new Vector, equaling sum.
+	 */
+	public Vector sum(Vector anotherVector) {
+		if (size() != anotherVector.size()) {
+			throw new IllegalArgumentException("Vectors must have equal lengths");
+		}
+		
+		List<Double> list = new ArrayList<>(size());
+		
+		for (int i = 0; i < size(); i++) {
+			list.add(this.vector.get(i) + anotherVector.get(i));
+		}
+		
+		return new Vector(list);
+	}
+	
+	/**
+	 * Returns i coordinate of vector.
+	 *
+	 * @param i - coordinate number.
+	 * @return i coordinate of vector.
+	 */
+	public double get(int i) {
+		return vector.get(i);
+	}
+	
+	/**
+	 * Returns norma of vector.
+	 * @return - norma value of this vector.
+	 */
+	public double norma() {
+		return Math.sqrt(
+				this.vector
+						.stream()
+						.reduce(0.0,
+								(a, b) -> a + b * b)
+		);
+	}
+	
+	/**
+	 * Returns size of vector.
+	 * @return - vector size;
+	 */
+	public int size() {
+		return this.vector.size();
+	}
+	
+	@Override
+	public String toString() {
+		return "[" + this.vector.stream()
+				.map(x -> String.format("%.4f", x))
+				.collect(Collectors.joining(", "))
+				+ "]";
+	}
+}
