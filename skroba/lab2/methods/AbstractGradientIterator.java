@@ -1,9 +1,6 @@
 package skroba.lab2.methods;
 
-import skroba.utils.Iterator;
-import skroba.utils.Pair;
-import skroba.utils.QuadraticFunction;
-import skroba.utils.Vector;
+import skroba.utils.*;
 
 /**
  * Abstract class for gradient methods.
@@ -12,6 +9,7 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	protected final Double EPS;
 	protected final QuadraticFunction function;
 	private final String methodName;
+	private final DoubleComparator comparator;
 	protected Pair<Vector, Double> currentValue;
 	protected Pair<Vector, Double> nextValue;
 	
@@ -19,6 +17,7 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 		this.function = function;
 		this.methodName = methodName;
 		this.EPS = EPS;
+		this.comparator = new DoubleComparator(EPS);
 	}
 	
 	public AbstractGradientIterator(final String methodName, final QuadraticFunction function) {
