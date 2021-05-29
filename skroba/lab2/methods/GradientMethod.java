@@ -18,7 +18,7 @@ public class GradientMethod extends AbstractGradientIterator {
 	 *
 	 * @param function - given minimizing function.
 	 */
-	public GradientMethod(final QuadraticFunction function) {
+	protected GradientMethod(final QuadraticFunction function) {
 		super(NAME, function);
 	}
 	
@@ -28,12 +28,12 @@ public class GradientMethod extends AbstractGradientIterator {
 	 * @param function - given minimizing function.
 	 * @param EPS - double value characterizing precession of calculating.
 	 */
-	public GradientMethod(final QuadraticFunction function, final Double EPS) {
+	protected GradientMethod(final QuadraticFunction function, final Double EPS) {
 		super(NAME, function, EPS);
 	}
 	
 	@Override
-	public boolean hasNext() {
+	protected boolean hasNextPr() {
 		final Vector cPoint = currentValue.getFirst();
 		final double cNorma = function.getGradient(cPoint).norma();
 		
@@ -57,7 +57,7 @@ public class GradientMethod extends AbstractGradientIterator {
 	}
 	
 	@Override
-	public Pair<Vector, Double> next() {
+	protected Pair<Vector, Double> nextPr() {
 		if (currentValue == nextValue && !hasNext()) {
 			throw new NoSuchElementException("There isn't any next position");
 		}

@@ -1,5 +1,7 @@
 package skroba.utils.logger;
 
+import skroba.utils.Pair;
+
 /**
  * Simple logger interface.
  */

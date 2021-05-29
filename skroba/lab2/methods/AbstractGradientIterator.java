@@ -1,6 +1,8 @@
 package skroba.lab2.methods;
 
 import skroba.utils.*;
+import skroba.utils.logger.GradientLogger;
+import skroba.utils.logger.Logger;
 
 import java.util.Collections;
 
@@ -11,6 +13,7 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	protected final Double EPS;
 	protected final QuadraticFunction function;
 	private final String methodName;
+	private GradientLogger logger;
 	protected final DoubleComparator comparator;
 	protected Pair<Vector, Double> currentValue;
 	protected Pair<Vector, Double> nextValue;
@@ -28,9 +31,35 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 		this(methodName, function, 1e-3);
 	}
 	
-	public abstract boolean hasNext();
+	@Override
+	public boolean hasNext() {
+		return hasNextPr();
+	}
 	
-	public abstract Pair<Vector, Double> next();
+	@Override
+	public Pair<Vector, Double> next() {
+		logState();
+		return nextPr();
+	}
+	
+	protected abstract boolean hasNextPr();
+	
+	protected abstract Pair<Vector, Double> nextPr();
+	
+	private void logState() {
+		if (logger != null) {
+			logger.log(currentValue);
+		}
+	}
+	
+	/**
+	 * Set logger.
+	 *
+	 * @param logger - logger, class have {@link Logger} interface.
+	 */
+	public void setLogger(final GradientLogger logger) {
+		this.logger = logger;
+	}
 	
 	/**
 	 * Function that returns method name.
