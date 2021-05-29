@@ -6,27 +6,59 @@ import skroba.utils.Vector;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Simple realization of Gradient Method, extended {@link AbstractGradientIterator}.
+ */
 public class GradientMethod extends AbstractGradientIterator {
 	private final static String NAME = "Gradient descent";
+	private double step = 1.0;
 	
-	private final double step = 1.0;
-	
+	/**
+	 *	Constructor with standard EPS equals 1e-3.
+	 *
+	 * @param function - given minimizing function.
+	 */
 	public GradientMethod(final QuadraticFunction function) {
 		super(NAME, function);
 	}
 	
+	/**
+	 * Constructor with given EPS.
+	 *
+	 * @param function - given minimizing function.
+	 * @param EPS - double value characterizing precession of calculating.
+	 */
 	public GradientMethod(final QuadraticFunction function, final Double EPS) {
 		super(NAME, function, EPS);
 	}
 	
 	@Override
 	public boolean hasNext() {
-		return false;
+		final Vector cPoint = currentValue.getFirst();
+		final double cNorma = function.getGradient(cPoint).norma();
+		
+		if (comparator.compare(EPS, cNorma) != -1) {
+			return false;
+		}
+		
+		final Vector nPoint = cPoint
+				.sum(function.getGradient(
+						cPoint.scalarMul(- step / cNorma))
+				);
+		final double nValue = function.apply(nPoint);
+		
+		if (nValue < currentValue.getSecond()) {
+			nextValue = new Pair<>(nPoint, nValue);
+			return true;
+		}
+		
+		step /= 2;
+		return hasNext();
 	}
 	
 	@Override
 	public Pair<Vector, Double> next() {
-		if (currentValue == null && nextValue == null && !hasNext()) {
+		if (currentValue == nextValue && !hasNext()) {
 			throw new NoSuchElementException("There isn't any next position");
 		}
 		

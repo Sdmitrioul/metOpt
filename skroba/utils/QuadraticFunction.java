@@ -57,6 +57,15 @@ public class QuadraticFunction implements Function<Vector, Double> {
 		return aMatrix.mul(point).sum(bVector);
 	}
 	
+	/**
+	 * Function returns span of matrix characterizing this function.
+	 *
+	 * @return - span of function.
+	 */
+	public int getSpan() {
+		return span;
+	}
+	
 	@Override
 	public String toString() {
 		return aMatrix + " * x^2 + " + bVector + " * x + " + String.format("%.4f", constant);
