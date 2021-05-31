@@ -4,8 +4,6 @@ import skroba.utils.Pair;
 import skroba.utils.QuadraticFunction;
 import skroba.utils.Vector;
 
-import java.util.NoSuchElementException;
-
 /**
  * Simple realization of Gradient Method, extended {@link AbstractGradientIterator}.
  */
@@ -58,10 +56,6 @@ public class GradientMethod extends AbstractGradientIterator {
 	
 	@Override
 	protected Pair<Vector, Double> nextPr() {
-		if (currentValue == nextValue && !hasNext()) {
-			throw new NoSuchElementException("There isn't any next position");
-		}
-		
 		this.currentValue = this.nextValue;
 		
 		return this.currentValue;

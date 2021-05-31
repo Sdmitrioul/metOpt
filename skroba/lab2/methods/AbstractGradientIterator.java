@@ -5,11 +5,14 @@ import skroba.utils.logger.GradientLogger;
 import skroba.utils.logger.Logger;
 
 import java.util.Collections;
+import java.util.NoSuchElementException;
 
 /**
  * Abstract class for gradient methods.
  */
 public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, Double>> {
+	private static final Double STANDARD_EPS = 1e-3;
+	protected static final Double STANDARD_DELTA = 0.95;
 	protected final Double EPS;
 	protected final QuadraticFunction function;
 	private final String methodName;
@@ -28,7 +31,7 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	}
 	
 	public AbstractGradientIterator(final String methodName, final QuadraticFunction function) {
-		this(methodName, function, 1e-3);
+		this(methodName, function, STANDARD_EPS);
 	}
 	
 	@Override
@@ -39,6 +42,11 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	@Override
 	public Pair<Vector, Double> next() {
 		logState();
+		
+		if (currentValue == nextValue && !hasNext()) {
+			throw new NoSuchElementException("There isn't any next position");
+		}
+		
 		return nextPr();
 	}
 	
