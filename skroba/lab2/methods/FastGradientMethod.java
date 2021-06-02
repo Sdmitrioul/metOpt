@@ -7,7 +7,7 @@ import skroba.utils.Pair;
 import skroba.utils.QuadraticFunction;
 import skroba.utils.Vector;
 
-import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 
@@ -16,7 +16,8 @@ import java.util.function.Function;
  */
 public class FastGradientMethod extends AbstractGradientIterator {
 	private final static String NAME = "Fast gradient descent";
-	private Class<? extends MinimumSearcher> oneDimSearcherToken = GoldenRatioMethod.class;
+	private final static Class<? extends MinimumSearcher> ONE_DIM_STANDARD_MINIMUM_SEARCHER = GoldenRatioMethod.class;
+	private Constructor<? extends MinimumSearcher> oneDimSearcherConstructor;
 	
 	/**
 	 *	Constructor with standard EPS equals 1e-3.
@@ -24,7 +25,7 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	 * @param function - given minimizing function.
 	 */
 	public FastGradientMethod(final QuadraticFunction function) {
-		super(NAME, function);
+		this(function, ONE_DIM_STANDARD_MINIMUM_SEARCHER);
 	}
 	
 	/**
@@ -34,7 +35,7 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	 * @param EPS - double value characterizing precession of calculating.
 	 */
 	public FastGradientMethod(final QuadraticFunction function, final Double EPS) {
-		super(NAME, function, EPS);
+		this(function, EPS, ONE_DIM_STANDARD_MINIMUM_SEARCHER);
 	}
 	
 	/**
@@ -46,7 +47,7 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	 */
 	public FastGradientMethod(final QuadraticFunction function, final Double EPS, final Class<? extends MinimumSearcher> oneDimSearcherToken) {
 		super(NAME, function, EPS);
-		this.oneDimSearcherToken = oneDimSearcherToken;
+		setConstructor(oneDimSearcherToken);
 	}
 	
 	/**
@@ -56,8 +57,7 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	 * @param oneDimSearcherToken - {@link Class} token of minimum searcher. It must implement {@link MinimumSearcher} interface.
 	 */
 	public FastGradientMethod(final QuadraticFunction function, final Class<? extends MinimumSearcher> oneDimSearcherToken) {
-		super(NAME, function);
-		this.oneDimSearcherToken = oneDimSearcherToken;
+		this(function, STANDARD_EPS, oneDimSearcherToken);
 	}
 	
 	@Override
@@ -83,6 +83,26 @@ public class FastGradientMethod extends AbstractGradientIterator {
 		}
 	}
 	
+	@Override
+	protected Pair<Vector, Double> nextPr() {
+		this.currentValue = this.nextValue;
+		
+		return this.currentValue;
+	}
+	
+	/**
+	 * Function that get constructor of one dim minimum searcher {@link MinimumSearcher}. It should be called only in class constructor.
+	 *
+	 * @param oneDimSearcherToken - {@link Class} token implements {@link MinimumSearcher}.
+	 */
+	private void setConstructor(final Class<? extends MinimumSearcher> oneDimSearcherToken) {
+		try {
+			oneDimSearcherConstructor = oneDimSearcherToken.getConstructor(double.class, double.class, Function.class);
+		} catch (NoSuchMethodException ex) {
+			throw new RuntimeException("Can't get constructor from one dim class: " + ex.getMessage());
+		}
+	}
+	
 	/**
 	 * Function that returns new instance of minimum searcher.
 	 * @param oneDimFun - one dim function for minimizing.
@@ -90,18 +110,9 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	 */
 	private MinimumSearcher getMinimumSearcher(Function<Double, Vector> oneDimFun) {
 		try {
-			return oneDimSearcherToken
-					.getConstructor(double.class, double.class, Function.class)
-					.newInstance(EPS / 100, STANDARD_DELTA, oneDimFun.andThen(function));
-		} catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
+			return oneDimSearcherConstructor.newInstance(EPS / 100, STANDARD_DELTA, oneDimFun.andThen(function));
+		} catch (InstantiationException | IllegalAccessException | InvocationTargetException ex) {
 			throw new RuntimeException("There's no such constructor: " + ex.getMessage());
 		}
-	}
-	
-	@Override
-	protected Pair<Vector, Double> nextPr() {
-		this.currentValue = this.nextValue;
-		
-		return this.currentValue;
 	}
 }

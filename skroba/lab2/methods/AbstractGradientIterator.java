@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * Abstract class for gradient methods.
  */
 public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, Double>> {
-	private static final Double STANDARD_EPS = 1e-3;
+	protected static final Double STANDARD_EPS = 1e-3;
 	protected static final Double STANDARD_DELTA = 0.95;
 	protected final Double EPS;
 	protected final QuadraticFunction function;
