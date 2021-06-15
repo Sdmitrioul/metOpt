@@ -36,13 +36,17 @@ public class QuadraticFunction implements Function<Vector, Double> {
 	 */
 	@Override
 	public Double apply(final Vector point) {
-		double answer = constant;
+		double answer = 0;
 		
 		for (int i = 0; i < span; i++) {
 			answer += aMatrix.mul(point).mul(point);
 		}
 		
+		answer /= 2;
+		
 		answer += bVector.mul(point);
+		
+		answer += constant;
 		
 		return answer;
 	}

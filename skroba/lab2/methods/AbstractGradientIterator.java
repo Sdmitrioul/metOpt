@@ -20,6 +20,8 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	protected final DoubleComparator comparator;
 	protected Pair<Vector, Double> currentValue;
 	protected Pair<Vector, Double> nextValue;
+	protected Vector gradient;
+	protected double gradientNorm;
 	
 	public AbstractGradientIterator(final String methodName, final QuadraticFunction function, final Double EPS) {
 		this.function = function;

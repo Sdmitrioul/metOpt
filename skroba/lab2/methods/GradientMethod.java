@@ -33,16 +33,14 @@ public class GradientMethod extends AbstractGradientIterator {
 	@Override
 	protected boolean hasNextPr() {
 		final Vector cPoint = currentValue.getFirst();
-		final double cNorma = function.getGradient(cPoint).norma();
 		
-		if (comparator.compare(EPS, cNorma) != -1) {
+		if (comparator.compare(EPS, gradientNorm) != -1) {
 			return false;
 		}
 		
 		final Vector nPoint = cPoint
-				.sum(function.getGradient(
-						cPoint.scalarMul(- step / cNorma))
-				);
+				.sum(gradient.scalarMul(- step / gradientNorm));
+		
 		final double nValue = function.apply(nPoint);
 		
 		if (nValue < currentValue.getSecond()) {
@@ -51,13 +49,15 @@ public class GradientMethod extends AbstractGradientIterator {
 		}
 		
 		step /= 2;
+		
 		return hasNext();
 	}
 	
 	@Override
 	protected Pair<Vector, Double> nextPr() {
 		this.currentValue = this.nextValue;
-		
+		this.gradient = function.getGradient(currentValue.getFirst());
+		this.gradientNorm = gradient.norma();
 		return this.currentValue;
 	}
 }

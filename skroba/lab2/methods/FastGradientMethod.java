@@ -63,14 +63,12 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	@Override
 	protected boolean hasNextPr() {
 		final Vector cPoint = currentValue.getFirst();
-		final double cNorma = function.getGradient(cPoint).norma();
 		
-		if (comparator.compare(EPS, cNorma) != -1) {
+		if (comparator.compare(EPS, gradientNorm) != -1) {
 			return false;
 		}
 		
-		final Function<Double, Vector> oneDimFun = x -> currentValue.getFirst()
-				.sum(function.getGradient(currentValue.getFirst()).scalarMul(-x));
+		final Function<Double, Vector> oneDimFun = x -> cPoint.sum(gradient.scalarMul(-x));
 		
 		MinimumSearcher searcher = getMinimumSearcher(oneDimFun);
 		
@@ -86,7 +84,8 @@ public class FastGradientMethod extends AbstractGradientIterator {
 	@Override
 	protected Pair<Vector, Double> nextPr() {
 		this.currentValue = this.nextValue;
-		
+		this.gradient = function.getGradient(currentValue.getFirst());
+		this.gradientNorm = gradient.norma();
 		return this.currentValue;
 	}
 	
