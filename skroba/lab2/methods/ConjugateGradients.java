@@ -49,7 +49,7 @@ public class ConjugateGradients extends AbstractGradientIterator{
 		
 		gradient = gradient.sum(tmp.scalarMul(alpha));
 		gradientNorm = gradient.norma();
-		final double beta = iteration == 0 ? 0 : gradientNorm * gradientNorm / prevGradientNorm / prevGradientNorm;
+		final double beta = iteration == 0 ? 0 : ((gradientNorm * gradientNorm) / prevGradientNorm) / prevGradientNorm;
 		futureVector = gradient.scalarMul(-1).sum(futureVector.scalarMul(beta));
 		
 		return true;
@@ -58,7 +58,8 @@ public class ConjugateGradients extends AbstractGradientIterator{
 	@Override
 	protected Pair<Vector, Double> nextPr() {
 		this.currentValue = this.nextValue;
-		
+		this.gradient = function.getGradient(currentValue.getFirst());
+		this.gradientNorm = gradient.norma();
 		return this.currentValue;
 	}
 	

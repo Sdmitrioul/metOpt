@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * Abstract class for gradient methods.
  */
 public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, Double>> {
-	protected static final Double STANDARD_EPS = 1e-3;
+	protected static final Double STANDARD_EPS = 1e-5;
 	protected static final Double STANDARD_DELTA = 0.95;
 	protected final Double EPS;
 	protected final QuadraticFunction function;
@@ -30,6 +30,8 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 		this.comparator = new DoubleComparator(EPS);
 		final Vector nVector = new Vector(Collections.nCopies(function.getSpan(), 0.0));
 		this.currentValue = new Pair<>(nVector, function.apply(nVector));
+		this.gradient = function.getGradient(nVector);
+		this.gradientNorm = gradient.norma();
 	}
 	
 	public AbstractGradientIterator(final String methodName, final QuadraticFunction function) {

@@ -112,7 +112,7 @@ public class Vector {
 	@Override
 	public String toString() {
 		return "[" + this.vector.stream()
-				.map(x -> String.format("%.4f", x))
+				.map(x -> String.format("%.8f", x))
 				.collect(Collectors.joining(", "))
 				+ "]";
 	}

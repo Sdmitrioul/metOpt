@@ -38,9 +38,7 @@ public class QuadraticFunction implements Function<Vector, Double> {
 	public Double apply(final Vector point) {
 		double answer = 0;
 		
-		for (int i = 0; i < span; i++) {
-			answer += aMatrix.mul(point).mul(point);
-		}
+		answer += aMatrix.mul(point).mul(point);
 		
 		answer /= 2;
 		

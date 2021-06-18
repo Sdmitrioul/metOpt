@@ -74,7 +74,8 @@ public class FastGradientMethod extends AbstractGradientIterator {
 		
 		try {
 			final double val = searcher.findMin(0.0, 1.0).getMin();
-			nextValue = new Pair<>(oneDimFun.apply(val), val);
+			final Vector result = oneDimFun.apply(val);
+			nextValue = new Pair<>(result, function.apply(result));
 			return true;
 		} catch (TimeOutException ex) {
 			return false;

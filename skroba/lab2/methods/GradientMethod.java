@@ -16,7 +16,7 @@ public class GradientMethod extends AbstractGradientIterator {
 	 *
 	 * @param function - given minimizing function.
 	 */
-	protected GradientMethod(final QuadraticFunction function) {
+	public GradientMethod(final QuadraticFunction function) {
 		super(NAME, function);
 	}
 	

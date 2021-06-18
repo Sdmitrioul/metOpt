@@ -18,7 +18,7 @@ public class DoubleComparator implements Comparator<Double> {
 	
 	@Override
 	public int compare(final Double first, final Double second) {
-		if (Math.abs(first - second) < EPS) {
+		if (Math.abs(first - second) <= EPS) {
 			return 0;
 		}
 		
