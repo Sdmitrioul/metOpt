@@ -113,7 +113,7 @@ public class Vector {
 	public String toString() {
 		return "[" + this.vector.stream()
 				.map(x -> String.format("%.8f", x))
-				.collect(Collectors.joining(", "))
+				.collect(Collectors.joining(" "))
 				+ "]";
 	}
 }

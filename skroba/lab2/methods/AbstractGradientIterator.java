@@ -5,13 +5,14 @@ import skroba.utils.logger.GradientLogger;
 import skroba.utils.logger.Logger;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
  * Abstract class for gradient methods.
  */
 public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, Double>> {
-	protected static final Double STANDARD_EPS = 1e-5;
+	protected static final Double STANDARD_EPS = 1e-3;
 	protected static final Double STANDARD_DELTA = 0.95;
 	protected final Double EPS;
 	protected final QuadraticFunction function;
@@ -28,7 +29,7 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 		this.methodName = methodName;
 		this.EPS = EPS;
 		this.comparator = new DoubleComparator(EPS);
-		final Vector nVector = new Vector(Collections.nCopies(function.getSpan(), 0.0));
+		final Vector nVector = new Vector(Collections.nCopies(function.getSpan(), 1.0));
 		this.currentValue = new Pair<>(nVector, function.apply(nVector));
 		this.gradient = function.getGradient(nVector);
 		this.gradientNorm = gradient.norma();
@@ -45,13 +46,12 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	
 	@Override
 	public Pair<Vector, Double> next() {
-		logState();
-		
 		if (currentValue == nextValue && !hasNext()) {
 			throw new NoSuchElementException("There isn't any next position");
 		}
-		
-		return nextPr();
+		var next = nextPr();
+		logState();
+		return next;
 	}
 	
 	protected abstract boolean hasNextPr();
@@ -71,6 +71,16 @@ public abstract class AbstractGradientIterator implements Iterator<Pair<Vector, 
 	 */
 	public void setLogger(final GradientLogger logger) {
 		this.logger = logger;
+		logState();
+	}
+	
+	/**
+	 * Returns log data.
+	 *
+	 * @return data
+	 */
+	public List<Pair<Vector, Double>> getLogs() {
+		return logger.getData();
 	}
 	
 	/**

@@ -7,5 +7,6 @@ import java.io.Closeable;
  */
 public interface FileWriter extends Closeable {
 	void write(String message);
+	void flush();
 	void close();
 }

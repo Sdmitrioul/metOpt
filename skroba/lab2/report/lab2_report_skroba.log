@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.6)  18 JUN 2021 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.6)  19 JUN 2021 10:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -534,7 +534,8 @@ Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 ))
-(./lab2_report_skroba.aux (./text/firstPage.aux) (./text/secondPage.aux))
+(./lab2_report_skroba.aux (./text/firstPage.aux) (./text/secondPage.aux)
+(./text/thirdPage.aux) (./text/fourthPage.aux) (./text/fifthPage.aux))
 \openout1 = `lab2_report_skroba.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -598,14 +599,14 @@ LaTeX Info: Redefining \nameref on input line 4.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(48.36967pt, 500.76852pt, 48.36967pt)
-* v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
+* v-part:(T,H,B)=(28.45274pt, 788.14136pt, 28.45274pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=500.76852pt
-* \textheight=759.6886pt
+* \textheight=788.14136pt
 * \oddsidemargin=-23.90031pt
 * \evensidemargin=-23.90031pt
-* \topmargin=-29.59087pt
+* \topmargin=-43.81725pt
 * \headheight=0.0pt
 * \headsep=0.0pt
 * \topskip=12.0pt
@@ -684,11 +685,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
-<static/fun-1-wolfram.png, id=15, 337.26pt x 255.95625pt>
+<static/fun-1-wolfram.png, id=15, 340.27126pt x 263.98625pt>
 File: static/fun-1-wolfram.png Graphic file (type png)
 <use static/fun-1-wolfram.png>
 Package pdftex.def Info: static/fun-1-wolfram.png  used on input line 59.
-(pdftex.def)             Requested size: 300.46416pt x 228.03467pt.
+(pdftex.def)             Requested size: 300.46416pt x 233.11423pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 63--65
 
@@ -699,44 +700,102 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.84 	\end{equation*}
-                      [1
-
- <./static/fun-1-wolfram.png>]
-<static/fun-2-wolfram.png, id=33, 345.29pt x 252.945pt>
+<static/fun-2-wolfram.png, id=17, 345.29pt x 252.945pt>
 File: static/fun-2-wolfram.png Graphic file (type png)
 <use static/fun-2-wolfram.png>
 Package pdftex.def Info: static/fun-2-wolfram.png  used on input line 87.
 (pdftex.def)             Requested size: 300.46416pt x 220.11055pt.
-) [2 <./static/fun-2-wolfram.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.94 \begin{center}
+                    [1
+
+ <./static/fun-1-wolfram.png>]) [2 <./static/fun-2-wolfram.png>]
 \openout2 = `text/secondPage.aux'.
 
- (./text/secondPage.tex) [3
+ (./text/secondPage.tex
+<static/fun-1-g.png, id=40, 867.24pt x 867.24pt>
+File: static/fun-1-g.png Graphic file (type png)
+<use static/fun-1-g.png>
+Package pdftex.def Info: static/fun-1-g.png  used on input line 10.
+(pdftex.def)             Requested size: 300.46416pt x 300.46849pt.
+) [3
 
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 10.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 10.
+ <./static/fun-1-g.png>]
+\openout2 = `text/thirdPage.aux'.
+
+
+(./text/thirdPage.tex
+<static/fun-1-f.png, id=48, 867.24pt x 867.24pt>
+File: static/fun-1-f.png Graphic file (type png)
+<use static/fun-1-f.png>
+Package pdftex.def Info: static/fun-1-f.png  used on input line 6.
+(pdftex.def)             Requested size: 200.30435pt x 200.29468pt.
+<static/fun-1-c.png, id=49, 867.24pt x 867.24pt>
+File: static/fun-1-c.png Graphic file (type png)
+<use static/fun-1-c.png>
+Package pdftex.def Info: static/fun-1-c.png  used on input line 16.
+(pdftex.def)             Requested size: 200.30435pt x 200.29468pt.
+) [4
+
+
+ <./static/fun-1-f.png> <./static/fun-1-c.png>]
+\openout2 = `text/fourthPage.aux'.
+
+
+(./text/fourthPage.tex
+<static/fun-2-g.png, id=58, 867.24pt x 867.24pt>
+File: static/fun-2-g.png Graphic file (type png)
+<use static/fun-2-g.png>
+Package pdftex.def Info: static/fun-2-g.png  used on input line 11.
+(pdftex.def)             Requested size: 200.30435pt x 200.29468pt.
+<static/fun-2-f.png, id=59, 867.24pt x 867.24pt>
+File: static/fun-2-f.png Graphic file (type png)
+<use static/fun-2-f.png>
+Package pdftex.def Info: static/fun-2-f.png  used on input line 21.
+(pdftex.def)             Requested size: 200.30435pt x 200.29468pt.
+) [5
+
+
+ <./static/fun-2-g.png> <./static/fun-2-f.png>]
+\openout2 = `text/fifthPage.aux'.
+
+
+(./text/fifthPage.tex
+<static/fun-2-c.png, id=68, 867.24pt x 867.24pt>
+File: static/fun-2-c.png Graphic file (type png)
+<use static/fun-2-c.png>
+Package pdftex.def Info: static/fun-2-c.png  used on input line 6.
+(pdftex.def)             Requested size: 250.38426pt x 250.38159pt.
+) [6
+
+
+ <./static/fun-2-c.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 13.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 13.
  (./lab2_report_skroba.aux
-(./text/firstPage.aux) (./text/secondPage.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 10.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 10.
+(./text/firstPage.aux) (./text/secondPage.aux) (./text/thirdPage.aux)
+(./text/fourthPage.aux) (./text/fifthPage.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 13.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 13.
 Package rerunfilecheck Info: File `lab2_report_skroba.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 10.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 13.
  ) 
 Here is how much of TeX's memory you used:
- 11888 strings out of 492616
- 162736 string characters out of 6129482
- 258972 words of memory out of 5000000
- 15654 multiletter control sequences out of 15000+600000
+ 11949 strings out of 492616
+ 163830 string characters out of 6129482
+ 260963 words of memory out of 5000000
+ 15681 multiletter control sequences out of 15000+600000
  17035 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,7n,35p,693b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,7n,35p,828b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc
 }</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -750,12 +809,11 @@ exlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/tex
 live/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive
 /2019/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on lab2_report_skroba.pdf (4 pages, 418015 bytes).
+019/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on lab2_report_skroba.pdf (7 pages, 1042754 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

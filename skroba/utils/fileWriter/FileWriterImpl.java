@@ -46,6 +46,15 @@ public class FileWriterImpl implements FileWriter {
 	}
 	
 	@Override
+	public void flush() {
+		try {
+			writer.flush();
+		} catch (IOException ex) {
+			throw new FileWriterException("Can't flush data: " + ex.getMessage());
+		}
+	}
+	
+	@Override
 	public void close() {
 		try {
 			writer.close();

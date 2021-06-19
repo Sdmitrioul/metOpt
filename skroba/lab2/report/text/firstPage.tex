@@ -23,7 +23,7 @@
 
 
 \begin{itemize}
-	\item Функция 1: $f(x,y) = 16x^2+ 8y^2 - 2xy + 5x - 7y + 1$
+	\item Функция 1: $f(x,y) = 16x^2+ 8y^2 - 20xy + 5x - 7y + 1$
 	\item Функция 2: $f(x,y) =  x^2 + 3 y^2-20 x-12 y+5$
 \end{itemize}
 
@@ -33,7 +33,7 @@
 
 \begin{itemize}
 	\item \textbf{Функция 1:}
-	$f(x,y) = 16x^2+ 8y^2 - 2xy + 5x - 7y + 1$\\
+	$f(x,y) = 16x^2+ 8y^2 - 20xy + 5x - 7y + 1$\\
 	\begin{equation*}
  		\begin{cases}
    			f_{x}'=0 \\
@@ -43,16 +43,16 @@
 	\end{equation*} \\
 	\begin{equation*}
  		\begin{cases}
-   			f_{x}'=32x - 2y + 5 = 0 \\
-   			f_{y}'=16y - 2x - 7 = 0
+   			f_{x}'=32x - 20y + 5 = 0 \\
+   			f_{y}'=16y - 20x - 7 = 0
  		\end{cases}
  		\Leftrightarrow
  		\begin{cases}
-   			x = - \frac{33}{254} \\
-   			y = \frac{107}{254}
+   			x = - \frac{15}{28} \\
+   			y = \frac{31}{28}
  		\end{cases}
  		\Leftrightarrow
- 		\min f(x,y) = - \frac{203}{254}
+ 		\min f(x,y) = - \frac{43}{28}
 	\end{equation*}
 	
 	\begin{figure}[h]
@@ -87,5 +87,22 @@
 		\center{\includegraphics[width=0.6\linewidth]{static/fun-2-wolfram.png}}
 		\caption{Аналитическое решение 2-ой  функции и ее график}
 	\end{figure}
-	
+\end{itemize}
+
+\bigskip
+
+\begin{center}
+	\begin{Large}
+		\textbf{3. Полученные результаты}
+	\end{Large}
+\end{center}
+
+\textbf{Параметры исследований:}
+\begin{itemize}
+	\item[-] Условие остановки: $||\nabla f (x^{[k]})|| \leq \epsilon$; 
+	\item[-] Начальная точка: $x^0 = (0, 0, ..., 0)$;
+	\item[-]  $\epsilon = 10^{-5}$;
+	\item[-]  $\delta = 0.95$;
+	\item[-] Начальный шаг для градиентного спуска: 1;
+	\item[-]  Число итераций для обновления метода сопряженных градиентов: $10$.
 \end{itemize}

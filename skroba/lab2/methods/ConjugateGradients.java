@@ -8,7 +8,7 @@ import skroba.utils.Vector;
  * Simple realization of Conjugate gradient method, extended {@link AbstractGradientIterator}.
  */
 public class ConjugateGradients extends AbstractGradientIterator{
-	private final static String NAME = "Conjugate gradient method";
+	public final static String NAME = "Conjugate gradient method";
 	
 	private final int MAX_COUNT_OF_ITERATIONS;
 	private int iteration;
