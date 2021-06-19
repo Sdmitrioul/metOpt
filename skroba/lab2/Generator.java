@@ -1,7 +1,7 @@
 package skroba.lab2;
 
 import skroba.utils.QuadraticFunction;
-import skroba.utils.SquareMatrix;
+import skroba.utils.matrix.SquareMatrix;
 import skroba.utils.Vector;
 
 import java.util.ArrayList;

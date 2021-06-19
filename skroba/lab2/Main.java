@@ -9,6 +9,7 @@ import skroba.utils.*;
 import skroba.utils.fileWriter.FileWriter;
 import skroba.utils.fileWriter.FileWriterImpl;
 import skroba.utils.logger.GradientLoggerImpl;
+import skroba.utils.matrix.SquareMatrix;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

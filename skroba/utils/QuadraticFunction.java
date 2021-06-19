@@ -1,5 +1,7 @@
 package skroba.utils;
 
+import skroba.utils.matrix.SquareMatrix;
+
 import java.util.function.Function;
 
 /**

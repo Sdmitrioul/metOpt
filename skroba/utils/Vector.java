@@ -1,6 +1,7 @@
 package skroba.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * Simple realization of vector with some methods, based on List.
  */
-public class Vector {
+public class Vector implements Vec<Double> {
 	private final List<Double> vector;
 	
 	/**
@@ -17,6 +18,14 @@ public class Vector {
 	 */
 	public Vector(final List<Double> vector) {
 		this.vector = vector;
+	}
+	
+	/**
+	 * Constructor of a new Vector of given array of double elements.
+	 * @param vector -array of double elements, not null.
+	 */
+	public Vector(final double[] vector) {
+		this(Arrays.stream(vector).boxed().collect(Collectors.toList()));
 	}
 	
 	/**
@@ -84,8 +93,13 @@ public class Vector {
 	 * @param i - coordinate number.
 	 * @return i coordinate of vector.
 	 */
-	public double get(int i) {
+	public Double get(int i) {
 		return vector.get(i);
+	}
+	
+	@Override
+	public void set(int pos, Double el) {
+		vector.set(pos, el);
 	}
 	
 	/**
