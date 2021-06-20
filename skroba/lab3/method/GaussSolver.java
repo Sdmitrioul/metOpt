@@ -65,7 +65,7 @@ public class GaussSolver extends AbstractSolver<SquareMatrix> {
 		int pos = row;
 		for (int i = row + 1; i < matrix.size(); i++) {
 			double element = matrix.getElement(i, row);
-			if (max < element) {
+			if (Math.abs(max) < Math.abs(element)) {
 				max = element;
 				pos = i;
 			}

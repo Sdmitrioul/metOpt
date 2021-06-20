@@ -12,7 +12,7 @@ public class GeneratorSimple extends AbstractGenerator{
 		double[][] matrix = new double[n][n];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				matrix[i][j] = Math.random() * 10;
+				matrix[i][j] = Math.random() * 3 - 1;
 			}
 		}
 		return new SquareMatrix(matrix);

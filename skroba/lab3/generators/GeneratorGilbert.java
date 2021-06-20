@@ -12,7 +12,7 @@ public class GeneratorGilbert extends AbstractGenerator {
 		double[][] matrix = new double[n][n];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				double z = i + j + 1;
+				double z = i + j - 1;
 				matrix[i][j] = 1 / z;
 			}
 		}

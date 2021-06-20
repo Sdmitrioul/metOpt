@@ -8,7 +8,6 @@ import skroba.lab3.matrix.ProfileMatrix;
 import skroba.lab3.method.GaussSolver;
 import skroba.lab3.method.LUSolver;
 import skroba.lab3.method.Solver;
-import skroba.utils.Vec;
 import skroba.utils.Vector;
 import skroba.utils.fileWriter.FileWriter;
 import skroba.utils.fileWriter.FileWriterImpl;
@@ -19,14 +18,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main {
-	
 	public static void main(String[] args) {
 		//generateLU();
-		//testLU();
-		/*generateGilbert();
-		testGilbert();*/
-		generateLU();
-		testCompare();
+		testLU();
+		//generateLU();
+		//testCompare();
+		//generateSimple();
+		//testGilbert();
 	}
 	
 	private static void testCompare() {
@@ -65,19 +63,19 @@ public class Main {
 	}
 	
 	private static void testGilbert() {
-		try (final FileWriter writer = new FileWriterImpl("results/gilbert")) {
+		try (final FileWriter writer = new FileWriterImpl("results/simple")) {
 			writer.write("\\begin{tabular}{|c|c|c|}\n");
 			writer.write("\\hline\n");
 			writer.write("n & $ || x^{*} - x_{k} || $ & $ || x^{*} - x_{k} || / || x^{*} || $ \\\\ \\hline\n");
-			Solver solver = new LUSolver();
-			for (int i = 10; i <= 1000; i +=10) {
+			Solver solver = new GaussSolver();
+			for (int i = 10; i < 1000; i += 40) {
 				Vector x = new Vector(IntStream.range(1, i + 1).mapToDouble(Double::new).boxed().collect(Collectors.toList()));
 				double norma = x.norma();
 				
-				Matrix matrix = MatrixReader.read(String.format("data/gilbert/%d", i));
+				SquareMatrix matrix = MatrixReader.read(String.format("data/simple/%d", i));
 				
 				Vector f = matrix.mul(x);
-				Vector ans = solver.solve(new ProfileMatrix(matrix), f);
+				Vector ans = solver.solve(matrix, f);
 				
 				double thirdPar = x.sum(ans.scalarMul(-1)).norma();
 				double fourthPar = thirdPar / norma;
@@ -111,11 +109,15 @@ public class Main {
 	
 	private static void generateGilbert() {
 		Generator generatorDiagonal = new GeneratorGilbert();
-		generatorDiagonal.generate("data/gilbert", 10, 1000, 10);
+		generatorDiagonal.generate("data/gilbert", 10, 1000, 50);
 	}
 	
 	private static void generateLU() {
 		GeneratorDiagonal generatorDiagonal = new GeneratorDiagonal();
 		generatorDiagonal.generate("data/lu", 10, 1000, 10, 1, 7);
+	}
+	private static void generateSimple() {
+		Generator generatorDiagonal = new GeneratorSimple();
+		generatorDiagonal.generate("data/simple", 10, 1000, 40);
 	}
 }
