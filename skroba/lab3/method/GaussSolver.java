@@ -3,6 +3,9 @@ package skroba.lab3.method;
 import skroba.utils.matrix.SquareMatrix;
 import skroba.utils.Vector;
 
+/**
+ * Class that solves SLAU using gauss method with find lead element.
+ */
 public class GaussSolver extends AbstractSolver<SquareMatrix> {
 	@Override
 	public Vector solve(final SquareMatrix matrix, final Vector b) {

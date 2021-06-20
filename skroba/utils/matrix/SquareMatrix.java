@@ -100,6 +100,16 @@ public class SquareMatrix implements Matrix {
 		return matrix.size();
 	}
 	
+	public Matrix copy() {
+		double[][] matrix = new double[size()][size()];
+		for (int i = 0; i < size(); i++) {
+			for (int j = 0; j < size(); j++) {
+				matrix[i][j] = getElement(i, j);
+			}
+		}
+		return new SquareMatrix(matrix);
+	}
+	
 	@Override
 	public String toString() {
 		return "["

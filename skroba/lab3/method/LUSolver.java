@@ -5,6 +5,9 @@ import skroba.lab3.matrix.ProfileMatrix;
 import skroba.utils.matrix.Matrix;
 import skroba.utils.Vector;
 
+/**
+ * Class that solves SLAU using LU decomposition.
+ */
 public class LUSolver extends AbstractSolver<ProfileMatrix> {
 	private Vector solveFirst(final ProfileMatrix input, final Matrix matrix, final Vector b) {
 		double[] y = new double[input.size()];

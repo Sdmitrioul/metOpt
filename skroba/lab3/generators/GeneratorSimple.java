@@ -3,6 +3,9 @@ package skroba.lab3.generators;
 import skroba.utils.matrix.Matrix;
 import skroba.utils.matrix.SquareMatrix;
 
+/**
+ * Generator of simple matrix with values of elements from 0 ip to 10.
+ */
 public class GeneratorSimple extends AbstractGenerator{
 	@Override
 	public Matrix generate(int n) {

@@ -3,6 +3,9 @@ package skroba.lab3.generators;
 import skroba.utils.matrix.Matrix;
 import skroba.utils.matrix.SquareMatrix;
 
+/**
+ * Generator of gilbert matrix for third task.
+ */
 public class GeneratorGilbert extends AbstractGenerator {
 	@Override
 	public Matrix generate(final int n) {

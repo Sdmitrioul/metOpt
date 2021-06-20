@@ -2,11 +2,18 @@ package skroba.lab3.matrix;
 
 import skroba.utils.matrix.Matrix;
 
+/**
+ * Class for making LU decomposition from matrix A.
+ */
 public class LU {
 	private final ProfileMatrix matrix;
 	public final L L;
 	public final U U;
 	
+	/**
+	 * Constructor from {@link ProfileMatrix}.
+	 * @param matrix - class contains fields L and U, both are implementing {@link Matrix} interface.
+	 */
 	public LU(ProfileMatrix matrix) {
 		this.matrix = matrix;
 		preprocess();

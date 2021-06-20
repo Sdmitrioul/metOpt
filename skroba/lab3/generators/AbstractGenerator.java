@@ -4,6 +4,9 @@ import skroba.utils.matrix.Matrix;
 import skroba.utils.fileWriter.FileWriter;
 import skroba.utils.fileWriter.FileWriterImpl;
 
+/**
+ * Abstract class for {@link Generator} interface.
+ */
 public abstract class AbstractGenerator implements Generator{
 	@Override
 	public void writeInFile(Matrix matrix, String fileName) {

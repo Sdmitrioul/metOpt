@@ -13,6 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class with static method that reads matrix from file and returns {@link SquareMatrix}.
+ */
 public class MatrixReader {
 	public static SquareMatrix read(final String filename) {
 		try {

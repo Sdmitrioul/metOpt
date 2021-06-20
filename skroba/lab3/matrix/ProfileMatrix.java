@@ -1,11 +1,13 @@
 package skroba.lab3.matrix;
 
 import skroba.utils.matrix.Matrix;
-import skroba.utils.matrix.SquareMatrix;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for profile matrix implementing {@link Matrix} interface.
+ */
 public class ProfileMatrix implements Matrix {
 	private static double[][] converter(final Matrix matrix) {
 		int size = matrix.size();
@@ -26,6 +28,10 @@ public class ProfileMatrix implements Matrix {
 	private int[] ia;
 	private int[] ja;
 	
+	/**
+	 * Constructor from double array.
+	 * @param matrix - array of double[][].
+	 */
 	public ProfileMatrix(final double[][] matrix) {
 		size = matrix.length;
 		
@@ -34,6 +40,10 @@ public class ProfileMatrix implements Matrix {
 		extractDiagonal(matrix);
 	}
 	
+	/**
+	 * Constructor from another matrix.
+	 * @param matrix
+	 */
 	public ProfileMatrix(final Matrix matrix) {
 		this(converter(matrix));
 	}
@@ -52,12 +62,12 @@ public class ProfileMatrix implements Matrix {
 			return au[ja[col] + row - start];
 		}
 		
-		int start = col - ia[row + 1] + ia[row];
+		int start = row - ia[row + 1] + ia[row];
 		if (col < start) {
 			return 0;
 		}
 		
-		return al[ia[col] + col - start];
+		return al[ia[row] + col - start];
 	}
 	
 	@Override
