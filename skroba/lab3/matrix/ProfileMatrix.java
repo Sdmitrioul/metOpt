@@ -28,9 +28,10 @@ public class ProfileMatrix implements Matrix {
 	
 	public ProfileMatrix(final double[][] matrix) {
 		size = matrix.length;
-		extractDiagonal(matrix);
+		
 		extractLow(matrix);
 		extractHigh(matrix);
+		extractDiagonal(matrix);
 	}
 	
 	public ProfileMatrix(final Matrix matrix) {
@@ -63,6 +64,7 @@ public class ProfileMatrix implements Matrix {
 	public void set(int row, int col, double el) {
 		if (row == col) {
 			d[row] = el;
+			return;
 		}
 		if (row < col) {
 			int start = col - ja[col + 1] + ja[col];
@@ -71,6 +73,7 @@ public class ProfileMatrix implements Matrix {
 			}
 			
 			au[ja[col] + row - start] = el;
+			return;
 		}
 		
 		int start = row - ia[row + 1] + ia[row];
@@ -95,7 +98,7 @@ public class ProfileMatrix implements Matrix {
 				counter++;
 				list.add(matrix[j][i]);
 			}
-			ja[i + 1] = ja[i] + i - counter;
+			ja[i + 1] = ja[i] + counter;
 		}
 		au = new double[list.size()];
 		for (int i = 0; i < au.length; i++) {
@@ -117,7 +120,7 @@ public class ProfileMatrix implements Matrix {
 				counter++;
 				list.add(matrix[i][j]);
 			}
-			ia[i + 1] = ia[i] + i - counter;
+			ia[i + 1] = ia[i] + counter;
 		}
 		al = new double[list.size()];
 		for (int i = 0; i < al.length; i++) {
